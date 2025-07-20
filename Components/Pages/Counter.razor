@@ -1,19 +1,42 @@
-﻿@page "/counter"
+﻿@page "/counter/{initCount:int?}"
 @rendermode InteractiveServer
 
 <PageTitle>Counter</PageTitle>
 
-<h1>Counter</h1>
+<h1>Passed Count: @initCount</h1>
 
-<p role="status">Current count: @currentCount</p>
-
+<p role="status">Starting count: @currentCount</p>
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
-@code {
-    private int currentCount = 0;
+<div class="mt-3">
+<input @onchange="OnChange" />
+<p>@text</p>
+</div>
 
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
+<div class="mt-3">
+    <input value="@text2" @oninput="OnInput" />
+    <button @onclick="Clear">Clear</button>
+    <p>@text2</p>
+</div>
+
+<div class="mt-3">
+    <input @bind="text3" @bind:event="oninput" @bind:after="rndm"/>
+    <button @onclick="Clear2">Clear</button>
+    <p>@text3</p>
+    <p>@res</p>
+</div>
+
+<div style="background-color: lightblue" @onmouseover="MouseOver" @onmouseout="MouseOut">@divTxt</div>
+
+<MyButton OnClick="IncrementCount" class="btn btn-success"> DO IT </MyButton>
+
+@if ( currentCount > 3 )
+{
+    <p> You Clicked More Than 3 Times !!</p>
 }
+<ul>
+    @for ( int i = 0; i < currentCount; i++)
+{
+    <li>Click number @i</li>
+}
+</ul>

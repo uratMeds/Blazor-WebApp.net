@@ -1,0 +1,17 @@
+﻿<button @onclick="OnClick" @attributes="Attributes">@ChildContent, I DARE YOU !!</button>
+
+@code {
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> Attributes { get; set; }
+
+    //private Task OnButtonClick(MouseEventArgs e) : Instead just write @onclick="OnClick" directly
+    //{
+    //   return OnClick.InvokeAsync(e);
+    //}
+}
